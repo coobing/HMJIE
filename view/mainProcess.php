@@ -88,5 +88,25 @@
 					$newStruktur= new struktur();
 					$newStruktur->saveStruktur($_POST['nama'], $_FILES['file']['name'], $_FILES['file']['type'], $_FILES['file']['size'], $_FILES['file']['tmp_name']);
 				}
+            else if ($act=='saveGalery')
+		 		{
+					$newProker= new proker();
+					$newProker->saveGalery($_POST['galery'], $_FILES['file']['name'], $_FILES['file']['tmp_name']);
+				}
+			else if ($act=='editAkses')
+		 		{
+					$newUser= new user();
+					$newUser->editAkses($_POST['jabatan'], $_POST['akses'], $_GET['id']);
+				}
+			else if ($act=='deleteFoto')
+		 		{
+					$newProker= new proker();
+					$newProker->deleteFoto($_GET['id']);
+				}
+			else if ($act=='downloadFoto')
+		 		{
+					$newProker= new proker();
+					$newProker->downloadFoto($_GET['id']);
+				}
 		}
 ?>

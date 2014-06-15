@@ -5,7 +5,7 @@
 				{
 					$this->dbOpen();
 					
-					$sql = "SELECT * FROM user ORDER BY jabatan";
+					$sql = "SELECT * FROM user ORDER BY jabatan DESC";
 					$query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
 					$num_results = mysqli_num_rows($query); 
 					
@@ -21,7 +21,24 @@
 									$dataUser[$i]['alamat'] = $row[5];
 									$dataUser[$i]['no_hp'] = $row[6];
 									$dataUser[$i]['email'] = $row[7];
-									$dataUser[$i]['jabatan'] = $row[8];				
+									$dataUser[$i]['jabatan'] = $row[8];
+									
+									$id = $row[0];
+									
+									$foto="SELECT * FROM akses where id_anggota='$id'";
+									$query2 = mysqli_query($this->conn, $foto);
+									$row3 =  mysqli_fetch_array($query2);
+									
+									if($row3>0)
+										{
+											$dataUser[$i]['akses'] = $row3['2'];
+										}
+									else
+										{
+											$dataUser[$i]['akses'] = "null";
+										}
+												
+													
 									$i++;
 								}
 						}
@@ -123,6 +140,30 @@
 					unset($i);
 					$this->dbClose();
 					return $dataUser1;        
+				}
+		
+		public function editAkses($jabatan, $akses, $id)
+				{	
+					$this->dbOpen();
+					$jabatan = mysqli_real_escape_string($this->conn, $jabatan);
+					$akses = mysqli_real_escape_string($this->conn, $akses);
+					$id = mysqli_real_escape_string($this->conn, $id);
+					
+					$sql = "UPDATE user SET jabatan='$jabatan' WHERE id_anggota='$id'";
+					$query = mysqli_query($this->conn, $sql);
+					
+					$sql1 = "UPDATE akses SET akses='$akses' WHERE id_anggota='$id'";
+					$query1 = mysqli_query($this->conn, $sql1);
+					
+					if (($query==true)&&($query1==true))
+						{
+							header('Location: ../admin.php?p=akses&sub=anggota&message=sukses');
+						}
+					else
+						{
+							header('Location: ../admin.php?p=akses&sub=anggota&message=gagal');
+		   				}
+		   			$this->dbClose();    
 				}
 		
 		public function getUser4()

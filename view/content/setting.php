@@ -1,5 +1,6 @@
 <div class="main-header">
-	<h2>Ganti Password</h2>
+	<h2>Setting</h2>
+	<em>the first priority information</em>
 </div>
 	<div class="main-content">
 	

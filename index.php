@@ -1,8 +1,10 @@
 <?php
 	require_once ('class/ClassProker.php');
 	require_once ('class/strukturClass.php');
+    
     $proker = new proker();
     $dataProker = $proker->getProker();
+    $dataFoto = $proker->getFoto();
 	$struktur = new struktur();
     $dataStruktur = $struktur->getStruktur();
 ?>
@@ -59,14 +61,9 @@
                     </ul>
                     <ul class="homenav right">
                         <li><a href="#timeline" class="scrollto">Proker</a></li>
-                        <li><a href="#contact" class="scrollto">Struktur Org</a></li>
+                        <li><a href="#contact" class="scrollto">Struktur</a></li>
                     </ul>
-                    <h1><img src="img/hmjie.png"></h1>
-                    <div id="slider">
-                        <div class="slide">Contoh<strong> Slogan</strong> yang akan ditampilkan.</div>
-						<div class="slide">Contoh<strong> Slogan</strong> sesuai keinginan.</div>
-						<div class="slide">Contoh<strong> Slogan</strong> HMJIE.</div>
-                     </div><!-- end: #slider -->    
+                    <h1><img src="img/hmjie.png"></h1>   
                 </div>
                 <a href="#works" id="arrow_down">See our work</a>
             </div><!-- end: .containter -->                    	
@@ -82,7 +79,7 @@
                             <li><a href="#works" class="scrollto">Galery</a></li>
                             <li><a href="#about" class="scrollto">About</a></li>
                             <li><a href="#timeline" class="scrollto">Proker</a></li>
-                            <li><a href="#contact" class="scrollto">Struktur organisasi</a></li>
+                            <li><a href="#contact" class="scrollto">Struktur Organisasi</a></li>
                             <li><a href="admin.php">Login</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -93,76 +90,47 @@
         <section id="works">
             <div class="container">
                 <h2 class="text-center">Galery<i class="icon-works"><img src="img/icon-works.png"></i></h2>
-                <p class="text-center lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
             </div> <!-- end: container -->
             <div id="works_items">
                 <ul id="og-grid" class="og-grid">
+                    <?php
+					if($dataFoto === null)
+							{
+								echo"<tr>"
+									. "<td colspan='7'><div class='alert alert-danger text-center'>Under Construction"
+									."</div></td>"
+									. "</tr>";
+							}
+						else 
+							{
+								$i=1;
+                                $j=1;
+								foreach ($dataFoto as $data)
+									{
+                                    $page = $data['nama'];
+                                     $dataFoto1 = $proker->getFoto2($page);
+					?>
                     <li>
-                        <a href="http://ecofair2014.blogspot.com/" data-largesrc="temp/eco.jpg" data-title="ECONOMIC FAIR 2014 " data-description="Economics Fair merupakan rangkaian acara Himpunan Mahasiswa Jurusan Ilmu Ekonomi Fakultas Ekonomi UNAND. Acara Economics Fair telah sukses diselenggarakan pada tahun 2013 dan untuk kedua kalinya diselenggarakan pada tahun 2014 dan semoga menjadi acara rutin hingga tahun-tahun selanjutnya. Rangkaian acara Economics Fair tahun 2014 terdiri dari Seminar Praktisi Syariah, Seminar IT, Bazar, Ekonomic Expo, Acoustic Competition, Olimpiade Ekonomi SMA/MA Tk Sumatra tanggal 28 April-3 Mei 2014">
-                            <img src="temp/thumbs/eco.jpg" alt="img01"/><div>ECONOMIC FAIR 2014 </div>
+                        <a href="#" data-largesrc="<?php echo $data['foto']; ?>" data-title="<?php echo $data['nama']; ?> " data-description="">
+                            <img src="<?php echo $data['foto']; ?>" style="max-width:250px; max-height:250px;" alt="img01"/><div><?php echo $data['nama']; ?></div>
                         </a>
-                                                <div class="thumbs">
-                                                    <a href="http://ecofair2014.blogspot.com/" data-largesrc="temp/eco1.jpg" data-thumb="temp/eco1.jpg" data-title="Seminar Nasional" data-description="SEMINAR NASIONAL PERBANKAN SYARIAH INDONESIA MENUJU PUSAT PEREKONOMIAN SYARIAH bersama SUHARNO ELIANDY (DIREKTUR EKSEKUTIF & MANAJEMEN RISIKO LPS) dan RONALD RULINDO (KEPALA DIVISI SYARIAH & MANAJEMEN RISIKO LPS ). Tanggal 28 April 2014 Pukul 9.00AM-selesai di CONVENTION HALL UNAND. Insert: IDR 10.000. Pendaftaran : Stand Economics Fair di PKM Lt.1/Sekretariatan HMJIE FE-UA. Contact person : Rima (082389266191) Ian (081266684551)"></a>
-                                                    <a href="http://ecofair2014.blogspot.com/" data-largesrc="temp/eco2.jpg" data-thumb="temp/eco2.jpg" data-title="Accoustic Competition" data-description="Acoustic Competition "Simphony with Acoustic" tanggal 2 Mei 2014. Pendaftaran 10 April-30 April 2014. Fee 100rb/group."></a>
-                                                    <a href="http://ecofair2014.blogspot.com/" data-largesrc="temp/eco3.jpg" data-thumb="temp/eco3.jpg" data-title="Olimpiade Ekonomi" data-description="OLIMPIADE EKONOMI SMA/MA se-Sumatera. Pendaftaran dimulai tanggal 1 April-2 Mei 2014."></a>
-                                                    <a href="http://ecofair2014.blogspot.com/" data-largesrc="temp/eco4.jpg" data-thumb="temp/eco4.jpg" data-title="Seminar Nasional IT" data-description="Seminar Nasional IT Taking A Business's Chance Through IT bersama KEN DEAN LAWADINATA (CEO of KASKUS) The Largest Indonesian Community dan CALVIN KIZANA (Founder of PICMIX) Aplikasi Edit Foto yang Mendunia Tanggal 29 April 2014 Pukul : 9.00 AM-Selesai Insert: IDR 25.000. Pendaftaran : Stand Economics Fair di PKM Lt.1 atau Sekretariatan HMJIE UNAND. CP : Nandya 08975140093 Iza 083180422905."></a>
-                                                   
-                                                </div>
+                        <div class="thumbs">
+                            <?php
+								foreach ($dataFoto1 as $data1)
+									{
+                                    ?>
+                             <a href="#" data-largesrc="<?php echo $data1['foto']; ?>" data-thumb="<?php echo $data1['foto']; ?>" data-title="<?php echo $data1['nama']; ?> " data-description=""></a>
+                                 <?php
+                                    $j++;
+                                    }
+                                    ?>
+                        </div>
                     </li>
-                    <li>
-                        <a href="#" data-largesrc="temp/2.jpg" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu.">
-                            <img src="temp/thumbs/2.jpg" alt="img02"/><div>Magazine publishing 2013</div>
-                        </a>
-                                                <div class="thumbs">
-                                                    <a href="#" data-largesrc="temp/2.jpg" data-thumb="temp/thumbs/2.jpg" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu."></a>
-                                                    <a href="#" data-largesrc="temp/z1.jpg" data-thumb="temp/thumbs/z1.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                    <a href="#" data-largesrc="temp/z2.jpg" data-thumb="temp/thumbs/z2.jpg" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu."></a>
-                                                    <a href="#" data-largesrc="temp/z3.jpg" data-thumb="temp/thumbs/z3.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                </div>
-                    </li>
-                    <li>
-                        <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/3.jpg" data-title="Dandelion horseradish" data-description="Cabbage bamboo shoot broccoli rabe chickpea chard sea lettuce lettuce ricebean artichoke earthnut pea aubergine okra brussels sprout avocado tomato.">
-                            <img src="temp/thumbs/3.jpg" alt="img03"/><div>Business marketing event</div>
-                        </a>
-                                                <div class="thumbs">
-                                                    <a href="http://exot.sk/" data-largesrc="temp/3.jpg" data-thumb="temp/thumbs/3.jpg" data-title="Dandelion horseradish" data-description="Cabbage bamboo shoot broccoli rabe chickpea chard sea lettuce lettuce ricebean artichoke earthnut pea aubergine okra brussels sprout avocado tomato."></a>
-                                                    <a href="http://exot.sk/" data-largesrc="temp/z1.jpg" data-thumb="temp/thumbs/z1.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                    <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/z2.jpg" data-thumb="temp/thumbs/z2.jpg" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu."></a>
-                                                    <a href="http://exot.sk/" data-largesrc="temp/z3.jpg" data-thumb="temp/thumbs/z3.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                    <a href="http://exot.sk/" data-largesrc="temp/1.jpg" data-thumb="temp/thumbs/1.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                </div>
-                    </li>
-                    <li>
-                        <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/4.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.">
-                            <img src="temp/thumbs/4.jpg" alt="img01"/><div>Magazine publishing and graphic design</div>
-                        </a>
-                                                <div class="thumbs">
-                                                    <a href="http://exot.sk/" data-largesrc="temp/4.jpg" data-thumb="temp/thumbs/4.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                    <a href="http://exot.sk/" data-largesrc="temp/z1.jpg" data-thumb="temp/thumbs/z1.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                    <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/z2.jpg" data-thumb="temp/thumbs/z2.jpg" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu."></a>
-                                                    <a href="http://exot.sk/" data-largesrc="temp/z3.jpg" data-thumb="temp/thumbs/z3.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot."></a>
-                                                </div>
-                    </li>
-                    <li>
-                        <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/5.jpg" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu.">
-                            <img src="temp/thumbs/5.jpg" alt="img02"/><div>Motor boat photoshooting</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/6.jpg" data-title="Dandelion horseradish" data-description="Cabbage bamboo shoot broccoli rabe chickpea chard sea lettuce lettuce ricebean artichoke earthnut pea aubergine okra brussels sprout avocado tomato.">
-                            <img src="temp/thumbs/6.jpg" alt="img03"/><div>Superstar website development</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/7.jpg" data-title="Azuki bean" data-description="Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.">
-                            <img src="temp/thumbs/7.jpg" alt="img01"/><div>Yacht magazine design</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://cargocollective.com/jaimemartinez/" data-largesrc="temp/8.jpg" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu.">
-                            <img src="temp/thumbs/8.jpg" alt="img02"/><div>Motor boat design contest</div>
-                        </a>
-                    </li>
+                     <?php
+                                    $i++;
+                                }
+                        }
+                        ?>
                 </ul>
             </div><!-- end: #works_items -->
         </section><!-- end: #works -->
@@ -200,121 +168,6 @@
 				<p class="text-center lead">
 				<strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
                 <div class="clear"></div>
-    
-                <div class="row"> 
-                    <div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg">
-                            <h2>Trendy M. Iqbal</h2>
-                            <p class="position">Ketua</p>
-                            <p><a href="mailto:something">TrendyM.Iqbal@gmail.com</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">F</i></a>
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-                    
-                    <div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg">
-                            <h2>Moh. Idsembit </h2>
-                            <p class="position">Komunikasi dan informasi</p>
-                            <p><a href="mailto:something">idsembit@gmail.com</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">I</i></a>
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-                    
-                    <div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg">
-                            <h2>Sitty Amelia</h2>
-                            <p class="position">Hubungan Masyarakat</p>
-                            <p><a href="mailto:something">titi@gmail.com</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">F</i></a>
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-
-                    <div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg">
-                            <h2>Briliant Yudistira </h2>
-                            <p class="position">Developer</p>
-                            <p><a href="mailto:something">dog@exot.sk</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                                <a href="#"><i class="ico">I</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-					
-					<div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg">
-                            <h2>Ovilia M</h2>
-                            <p class="position">Developer</p>
-                            <p><a href="mailto:something">rich.dog@exot.sk</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                                <a href="#"><i class="ico">I</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-					
-					<div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg" width="128px" height="140px">
-                            <h2>Rizki Hamdani </h2>
-                            <p class="position">Developer</p>
-                            <p><a href="mailto:something">rich.dog@exot.sk</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                                <a href="#"><i class="ico">I</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-					
-					<div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg">
-                            <h2>Wenny Ilham </h2>
-                            <p class="position">Developer</p>
-                            <p><a href="mailto:something">rich.dog@exot.sk</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                                <a href="#"><i class="ico">I</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-					
-					<div class="span3">
-                        <div class="person"> 
-                            <img alt="NAME" src="server/foto/images.jpg">
-                            <h2>Yudhi Barlin </h2>
-                            <p class="position">Developer</p>
-                            <p><a href="mailto:something">rich.dog@exot.sk</a></p>
-                            <ul class="inline text-center">
-                                <a href="#"><i class="ico">L</i></a>
-                                <a href="#"><i class="ico">D</i></a>
-                                <a href="#"><i class="ico">I</i></a>
-                            </ul>
-                        </div><!-- end: .person -->
-                    </div><!-- end: .span3 -->
-
-                </div><!-- end: .row -->
             </div><!-- end: .container -->
         </section>
 
@@ -327,7 +180,7 @@
 					if($dataProker === null)
 							{
 								echo"<tr>"
-									. "<td colspan='7'><div class='alert alert-danger text-center'>Data Kosong"
+									. "<td colspan='7'><div class='alert alert-danger text-center'>Under Construction"
 									."</div></td>"
 									. "</tr>";
 							}
@@ -358,26 +211,22 @@
                 </ul>
             </div><!-- end: .containter -->
         </section><!-- end: #timeline -->
-
-        <div class="container txtblock nrthree">
-            <p class="text-center lead">Our offices are situated in London where we have a base for the leading graphic designers, developers and other magicians in the country. <a href="#contact" class="scrollto">Let`s talk.</a></p>
-        </div> <!-- end: container txtblock -->
         
         <section id="contact">
             <div class="container">
+            <h2 class="text-center">Struktur Organisasi HMJIE<i class="icon-contact"></i></h2>
 			<?php
 			if($dataStruktur === null)
 			  {
 				  echo"<tr>"
-					  . "<td colspan='7'><div class='alert alert-danger text-center'>Data Kosong"
+					  . "<td colspan='7'><div class='alert alert-danger text-center'>Under Construction"
 					  ."</div></td>"
 					  . "</tr>";
 			  }
 		  else 
 			  {
 			?>
-                <h2 class="text-center"><?php echo $dataStruktur['nama']; ?><i class="icon-contact"><img src="img/icon-contact.png"></i></h2>
-                <p class="text-center lead">Let`s get together and create something beautiful for you and your business. The time is now. <strong>Go for it</strong>.</p> 
+                <p class="text-center lead"><?php echo $dataStruktur['nama']; ?></p> 
                 
                 <footer> 
                 

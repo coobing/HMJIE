@@ -143,17 +143,37 @@
 									</ul>
 								</li>
 								<?php
-									if($_SESSION['akses']=='kominfo')
+									if(($_SESSION['akses']=='kominfo') || ($_SESSION['akses']=='litbang'))
 										{
 								?>
 								<li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-clipboard fa-fw"></i><span class="text">Program Kerja</span>
                                   <i class="toggle-icon fa fa-angle-left"></i></a>
                                       <ul class="sub-menu ">
+                                  
+                                <?php
+									if($_SESSION['akses']=='kominfo')
+										{
+								?>                                      
                                           <li>
                                               <a href="?p=tambah&sub=proker">
                                                   <span class="text">Input Program Kerja</span>
                                               </a>
-                                          </li>	  	
+                                          </li>	  
+                                <?php
+										}
+								?>	   
+                                <?php
+									if($_SESSION['akses']=='litbang')
+										{
+								?>                                  
+                                          <li>
+                                              <a href="?p=galery">
+                                                  <span class="text">Input Galery</span>
+                                              </a>
+                                          </li>	
+                                	<?php
+										}
+								?>	                                          
                                       </ul>
                                 </li>
 								<?php
@@ -169,6 +189,11 @@
 										<li>
 											<a href="?p=user&sub=anggota">
 												<span class="text">Daftar User</span>
+											</a>
+										</li>
+                                        <li>
+											<a href="?p=akses&sub=anggota">
+												<span class="text">Hak Akses & Jabatan</span>
 											</a>
 										</li>
 								<?php

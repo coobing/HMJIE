@@ -103,20 +103,6 @@ if($_SESSION['akses']!= 'litbang')
 	<!-- END MODAL DIALOG -->	
 	
 	<div class="widget widget-table">
-		<div class="widget-header">
-			<h3><i class="fa fa-desktop"></i> Browser &amp; OS</h3>
-			<div class="btn-group widget-header-toolbar">
-				<a href="#" title="Focus" class="btn-borderless btn-focus"><i class="fa fa-eye"></i></a>
-				<a href="#" title="Expand/Collapse" class="btn-borderless btn-toggle-expand"><i class="fa fa-chevron-up"></i></a>
-				<a href="#" title="Remove" class="btn-borderless btn-remove"><i class="fa fa-times"></i></a>
-			</div>
-			<div class="btn-group widget-header-toolbar">
-				<div class="control-inline toolbar-item-group">
-					<span class="control-title">New Visits:</span>
-					<div class="label label-success"><i class="fa fa-caret-up"></i> 3.5%</div>
-				</div>
-			</div>
-		</div>
 		<div class="widget-content">
 			<table id="visit-stat-table" class="table  table-striped table-hover datatable" cellpadding="0" cellspacing="0" width="100%">
 				<thead>

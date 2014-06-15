@@ -6,14 +6,14 @@ if($_SESSION['akses']!= 'kominfo')
 ?>
 <div class="main-header">
 	<h2>Program Kerja HMJIE</h2>
-	
+	<em>the first priority information</em>
 </div>
 	<div class="main-content">
 	
 	<!-- ADVANCED VALIDATION -->
 										<div class="widget">
 											<div class="widget-header">
-												<h3><i class="fa fa-check-circle"></i>Program kerja</h3>
+												<h3><i class="fa fa-check-circle"></i>Proker</h3>
 											</div>
 											<div class="widget-content col-sm-5">
 												<form id="advanced-form"  method="post" action="view/mainProcess.php?act=saveProker">

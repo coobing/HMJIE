@@ -5,7 +5,7 @@
 				{
 					$this->dbOpen();
 					
-					$sql = "SELECT * FROM struktur_organisasi";
+					$sql = "SELECT * FROM struktur_organisasi ORDER BY id_struktur DESC";
 					$query = mysqli_query($this->conn, $sql) or die(mysqli_error($this->conn));
 					
 					$row = mysqli_fetch_array($query);

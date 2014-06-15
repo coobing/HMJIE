@@ -64,9 +64,6 @@
 	<!-- END MODAL DIALOG -->	
 	
 	<div class="widget widget-table">
-		<div class="widget-header">
-			<h3><i class="fa fa-desktop"></i></h3>
-		</div>
 		<div class="widget-content">
 			<table id="visit-stat-table" class="table  table-striped table-hover datatable" cellpadding="0" cellspacing="0" width="100%">
 				<thead>
